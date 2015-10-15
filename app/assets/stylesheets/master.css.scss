@@ -1,3 +1,6 @@
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+
 .booyah-box {
 	-moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
 	-webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
@@ -22,4 +25,10 @@ body {
 .navbar.navbar-inverse {
 	border-radius: 0;
 	box-shadow: 0px 1px 3px #2a2a2a;
+}
+.navbar-inverse .navbar-brand {
+	color: #FF9627;
+	font-family: 'nexa_rust_slabblack_shadow_01', sans-serif;
+	font-size: 50px;
+	
 }

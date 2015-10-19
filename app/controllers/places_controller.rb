@@ -9,9 +9,13 @@ class PlacesController < ApplicationController
 		@place = Place.new
 	end
 
-	def create #when the button is pressed
-		current_user.places.create(place_params)
-		redirect_to root_path
+	def create 
+		@place = current_user.places.create(place_params)
+		if @place.valid?
+			redirect_to root_path
+		else
+			render :new, :status => :unprocessable_entity
+		end
 	end
 
 	def show
@@ -32,7 +36,11 @@ class PlacesController < ApplicationController
 			return render :text => "Not Allowed", :status => :forbidden
 		end
 		@place.update_attributes(place_params) #this will update each of our database's values
-		redirect_to root_path #redirects user to root page
+		if @place.valid?
+			redirect_to root_path #redirects user to root page
+		else
+			render :edit, :status => :unprocessable_entity
+		end
 	end
 
 	def destroy

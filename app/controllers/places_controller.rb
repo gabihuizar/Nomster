@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-	before_action :authenticate_user!, :only => [:new, :create, :edit, :update] #allows only logged in user to create new, and edit a brewery
+	before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy] #allows only logged in user to create new, and edit a brewery
 	def index
 		@places = Place.paginate(:page => params[:page], :per_page => 5)
 
@@ -37,6 +37,9 @@ class PlacesController < ApplicationController
 
 	def destroy
 		@place = Place.find(params[:id])#finds the place
+		if @place.user != current_user
+			return render :text => "Not Allowed", :status => :forbidden
+		end
 		@place.destroy #destroys it
 		redirect_to root_path #redirects user to root page
 

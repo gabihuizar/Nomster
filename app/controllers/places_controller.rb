@@ -27,7 +27,14 @@ class PlacesController < ApplicationController
 		@place.update_attributes(place_params) #this will update each of our database's values
 		redirect_to root_path #redirects user to root page
 	end
-	
+
+	def destroy
+		@place = Place.find(params[:id])#finds the place
+		@place.destroy #destroys it
+		redirect_to root_path #redirects user to root page
+
+	end
+
 	private
 
 	def place_params

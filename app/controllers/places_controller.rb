@@ -5,11 +5,11 @@ class PlacesController < ApplicationController
 
 	end
 
-	def new
+	def new #presents the form
 		@place = Place.new
 	end
 
-	def create
+	def create #when the button is pressed
 		current_user.places.create(place_params)
 		redirect_to root_path
 	end
@@ -22,6 +22,12 @@ class PlacesController < ApplicationController
 		@place = Place.find(params[:id])
 	end
 
+	def update#will get executed when the user presses the button on the edit form
+		@place = Place.find(params[:id]) #will find the data
+		@place.update_attributes(place_params) #this will update each of our database's values
+		redirect_to root_path #redirects user to root page
+	end
+	
 	private
 
 	def place_params

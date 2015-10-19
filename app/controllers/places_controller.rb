@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-	before_action :authenticate_user!, :only => [:new, :create]
+	before_action :authenticate_user!, :only => [:new, :create, :edit, :update] #allows only logged in user to create new, and edit a brewery
 	def index
 		@places = Place.paginate(:page => params[:page], :per_page => 5)
 
@@ -20,10 +20,17 @@ class PlacesController < ApplicationController
 
 	def edit
 		@place = Place.find(params[:id])
+
+		if @place.user != current_user #this will only be triggered if user logged in is not user that created place
+			return render :text => "Not Allowed", :status => :forbidden
+		end
 	end
 
 	def update#will get executed when the user presses the button on the edit form
 		@place = Place.find(params[:id]) #will find the data
+		if @place.user != current_user
+			return render :text => "Not Allowed", :status => :forbidden
+		end
 		@place.update_attributes(place_params) #this will update each of our database's values
 		redirect_to root_path #redirects user to root page
 	end

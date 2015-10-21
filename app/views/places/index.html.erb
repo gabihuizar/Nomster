@@ -7,8 +7,24 @@
 	<% if place.user.present? %>
 		<small><%= place.user.email %></small>
 	<% end %>
+
+	<% if place.comments.present? %>
+		<div class = 'col-xs-12'>
+    		<blockquote>
+    			<% if place.comments.last.humanized_rating.present? %>
+      				<b><%= place.comments.last.humanized_rating %></b> -
+      			<% end %>
+
+        		<%= place.comments.last.message %>
+        		<% if place.comments.last.user.present? %>
+      				<small><%= place.comments.last.user.email %></small>
+      			<% end %>
+    		</blockquote>
+  </div>
+<% end %>
 </div>
 <% end %>
+<br style = 'clear:both;'/>
 
 <div class = 'pages'>
 	<%= will_paginate @places %>

@@ -115,12 +115,8 @@ function initMap() {
 	<% @place.photos.each do |photo| %>
 		<div class='col-xs-12 col-sm-6'>
 		<%= image_tag photo.picture, :class => 'img-responsive' %>
-		<small><%= photo.caption %></small>
+		<small class = 'text-center'><%= photo.caption %></small>
 		</div>
 	<% end %>
-	<%= simple_form_for @photo, :url => place_photos_path(@place) do |f| %>
-		<%= f.input :picture %>
-		<%= f.input :caption %>
-		<%= f.submit "Add a Photo", :class => 'btn btn-primary pull-right' %>
-	<% end %>
+	
 </div>

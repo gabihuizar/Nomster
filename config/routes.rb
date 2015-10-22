@@ -3,6 +3,7 @@ Nomster::Application.routes.draw do
   root 'places#index'
 
   resources :places do
+    resources :photos, :only => :create 
     resources :comments, :only => :create
   end
   # The priority is based upon order of creation: first created -> highest priority.

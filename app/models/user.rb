@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :places
   has_many :comments #user can be linked to many places & commments!
+  has_many :photos
 end

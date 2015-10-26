@@ -6,6 +6,8 @@ Nomster::Application.routes.draw do
     resources :photos, :only => :create 
     resources :comments, :only => :create
   end
+  resources :users, :only => :show #hooks up a route & let's us access the "show"
+  #action of the users_controller
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

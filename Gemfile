@@ -64,3 +64,5 @@ gem 'carrierwave'
 
 gem 'fog', "~> 1.3.1"
 
+gem 'factory_girl_rails', '~> 4.0'
+
